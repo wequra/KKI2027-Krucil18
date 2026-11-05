@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MissionEvent",
+  "type": "object",
+  "required": ["event_id", "type", "ts_utc", "lane"],
+  "additionalProperties": false,
+  "properties": {
+    "event_id": {"type": "string", "description": "UUID, idempotency key"},
+    "type": {"enum": ["buoy_pass","buoy_miss","penalty","image_capture","dock_start","dock_complete","restart","failsafe_hold","link_lost","link_restored"]},
+    "ts_utc": {"type": "string", "format": "date-time"},
+    "lane": {"enum": ["A", "B"]},
+    "buoy_pair": {"type": "integer", "minimum": 1, "maximum": 10},
+    "penalty_reason": {"enum": ["buoy_touch", "boundary_violation", "other"]},
+    "lat": {"type": "number"},
+    "lon": {"type": "number"},
+    "note": {"type": "string"}
+  }
+}
