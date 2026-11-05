@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Telemetry",
+  "type": "object",
+  "required": ["team", "lane", "ts_utc", "lat", "lon", "heading_deg", "sog_ms", "cog_deg", "battery_pct", "mission_state"],
+  "additionalProperties": false,
+  "properties": {
+    "team": {"type": "string"},
+    "pt": {"type": "string"},
+    "lane": {"enum": ["A", "B"]},
+    "ts_utc": {"type": "string", "format": "date-time"},
+    "lat": {"type": "number", "minimum": -90, "maximum": 90},
+    "lon": {"type": "number", "minimum": -180, "maximum": 180},
+    "heading_deg": {"type": "number", "minimum": 0, "maximum": 360},
+    "sog_ms": {"type": "number", "minimum": 0},
+    "cog_deg": {"type": "number", "minimum": 0, "maximum": 360},
+    "battery_pct": {"type": "number", "minimum": 0, "maximum": 100},
+    "battery_v": {"type": "number", "minimum": 0},
+    "gps_fix": {"type": "integer", "minimum": 0, "maximum": 6},
+    "mode": {"type": "string"},
+    "mission_state": {"enum": ["IDLE","ARMED","TRANSIT_BUOYS","SURFACE_IMAGING","UNDERWATER_IMAGING","DOCKING","FINISHED","HOLD_FAILSAFE","RESTART"]}
+  }
+}

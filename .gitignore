@@ -1,0 +1,11 @@
+.env
+.venv/
+__pycache__/
+node_modules/
+build/
+devel/
+install/
+log/
+*.pt
+*.mp4
+.DS_Store
