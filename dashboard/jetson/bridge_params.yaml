@@ -1,0 +1,12 @@
+gcs_media_bridge:
+  ros__parameters:
+    gcs_api_url: "http://<GCS_IP>:8000"
+    jetson_api_key: "test_key"
+    surface_stream_ros_topic: "/asv/camera_debug"
+    surface_stream_rtsp_url: "rtsp://<GCS_IP>:8554/surface"
+    surface_image_ros_topic: "/camera/image_raw"
+    underwater_image_ros_topic: "/underwater_camera/image_raw"
+    mission_status_topic: "/asv/mission_status"
+    run_id: 0
+    grid_position: ""
+    stream_fps: 15.0

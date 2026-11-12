@@ -1,0 +1,73 @@
+version: '3.8'
+
+services:
+  # 1. Database PostgreSQL
+  db:
+    image: postgres:15-alpine
+    container_name: asv_postgres
+    restart: always
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgrespassword
+      POSTGRES_DB: asv_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # 2. Database Time-Series InfluxDB v2
+  influxdb:
+    image: influxdb:2.7-alpine
+    container_name: asv_influxdb
+    restart: always
+    environment:
+      # Auto-setup awal InfluxDB
+      DOCKER_INFLUXDB_INIT_MODE: setup
+      DOCKER_INFLUXDB_INIT_USERNAME: dagozilla
+      DOCKER_INFLUXDB_INIT_PASSWORD: dagozilla2026
+      DOCKER_INFLUXDB_INIT_ORG: dagozilla-itb
+      DOCKER_INFLUXDB_INIT_BUCKET: asv_telemetry
+      DOCKER_INFLUXDB_INIT_ADMIN_TOKEN: dagozilla_docker_token_2026
+    ports:
+      - "8086:8086"
+    volumes:
+      - influxdb_data:/var/lib/influxdb2
+      - influxdb_config:/etc/influxdb2
+
+  # 3. Backend FastAPI kita
+  api:
+    build: .
+    container_name: asv_backend
+    restart: always
+    # Membaca environment variables dari .env.docker
+    env_file:
+      - .env.docker
+    ports:
+      - "8000:8000"
+      - "14551:14551/udp"
+    volumes:
+      # Mount folder lokal ke container agar tidak perlu build ulang saat ngoding
+      - .:/app
+    depends_on:
+      - db
+      - influxdb
+
+  # 4. MediaMTX (Video Gateway WebRTC)
+  mediamtx:
+    image: bluenviron/mediamtx:latest
+    container_name: asv_mediamtx
+    restart: always
+    network_mode: "host"
+    volumes:
+      - ./mediamtx.yml:/mediamtx.yml:ro
+    command: ["/mediamtx.yml"]
+    # Port utama:
+    # 8554 (RTSP)
+    # 8888 (HLS)
+    # 8889 (WebRTC)
+
+# Deklarasi volume agar data tidak hilang walau container dihapus
+volumes:
+  postgres_data:
+  influxdb_data:
+  influxdb_config:

@@ -1,0 +1,7 @@
+# Explicit ports used by the Jetson RTSP publisher and the browser iframe.
+rtspAddress: :8554
+webrtcAddress: :8889
+
+paths:
+  all:
+    source: publisher

@@ -1,0 +1,10 @@
+venv/
+.venv/
+__pycache__/
+*.pyc
+.git/
+.env
+influxdb_server/
+influxdb_temp/
+test_api.py
+test_ws.py
