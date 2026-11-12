@@ -1,0 +1,17 @@
+# Environments
+.env
+.env.docker
+venv/
+.venv/
+
+# Cache
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Dokumentasi Internal
+brainstorming/
+
+# InfluxDB Local Data (just in case)
+influxdb_temp/
+influxdb_server/
