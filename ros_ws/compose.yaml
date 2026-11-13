@@ -1,0 +1,20 @@
+services:
+  asv:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile
+    image: dagozilla-asv:jazzy
+    container_name: dagozilla-asv
+    init: true
+    network_mode: host
+    # Keep files created in the bind-mounted workspace editable by the host user.
+    user: "${LOCAL_UID:-1000}:${LOCAL_GID:-1000}"
+    group_add:
+      - "${VIDEO_GID:-44}"
+    environment:
+      ROS_DOMAIN_ID: "${ROS_DOMAIN_ID:-42}"
+      DISPLAY: "${DISPLAY:-:0}"
+    volumes:
+      - .:/dagozilla_ws
+      - /tmp/.X11-unix:/tmp/.X11-unix:rw
+    command: ["sleep", "infinity"]

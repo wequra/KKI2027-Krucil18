@@ -1,0 +1,25 @@
+uint8 IDLE=0
+uint8 PREPARATION=1
+uint8 START=2
+uint8 NAVIGATING_BUOYS=3
+uint8 SURFACE_IMAGING=4
+uint8 UNDERWATER_IMAGING=5
+uint8 DOCKING=6
+uint8 FINISH=7
+uint8 PAUSED=8
+uint8 COMPLETED=9
+uint8 ABORTED=10
+uint8 TIMEOUT=11
+
+uint8 state
+uint32 current_waypoint_index
+uint32 total_waypoints
+float32 distance_to_next_wp
+uint32 buoy_pairs_passed
+uint32 total_buoy_pairs
+uint32 penalty_count
+uint32 elapsed_seconds
+uint32 max_run_seconds
+bool surface_image_captured
+bool underwater_image_captured
+bool docking_completed

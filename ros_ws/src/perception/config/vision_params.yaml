@@ -1,0 +1,36 @@
+vision_detector_node:
+  ros__parameters:
+    # Threshold HSV awal untuk referensi warna KKI 2026:
+    # merah PB115, hijau PB110, biru PB107. Kalibrasi ulang di venue.
+    red_low:
+      h_low: 0
+      h_high: 10
+      s_low: 120
+      s_high: 255
+      v_low: 70
+      v_high: 255
+      min_contour_area: 300.0
+    red_high:
+      h_low: 170
+      h_high: 179
+      s_low: 120
+      s_high: 255
+      v_low: 70
+      v_high: 255
+      min_contour_area: 300.0
+    green:
+      h_low: 35
+      h_high: 85
+      s_low: 80
+      s_high: 255
+      v_low: 60
+      v_high: 255
+      min_contour_area: 300.0
+    blue:
+      h_low: 95
+      h_high: 130
+      s_low: 80
+      s_high: 255
+      v_low: 50
+      v_high: 255
+      min_contour_area: 300.0

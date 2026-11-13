@@ -1,0 +1,17 @@
+cmd_vel_to_rc_override_node:
+  ros__parameters:
+    enabled: true
+
+    # 1-based RC input channels. Match these to Pixhawk RCMAP_ROLL
+    # (Rover steering) and RCMAP_THROTTLE before hardware operation.
+    steering_channel: 1
+    throttle_channel: 3
+
+    pwm_min: 1200
+    pwm_trim: 1500
+    pwm_max: 1800
+
+    max_linear_input: 1.0
+    max_angular_input: 1.0
+    deadman_timeout: 0.75
+    publish_rate: 10.0

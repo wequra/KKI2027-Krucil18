@@ -1,0 +1,4 @@
+waypoint_follower_node:
+  ros__parameters:
+    max_linear_speed: 1.2   # m/s
+    heading_kp: 1.5

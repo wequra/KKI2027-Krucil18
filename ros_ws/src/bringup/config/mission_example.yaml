@@ -1,0 +1,5 @@
+# Contoh file misi — koordinat GPS dummy, sesuaikan dengan lokasi kolam uji
+waypoints:
+  - {latitude: -6.200000, longitude: 106.816666, target_speed: 1.0, acceptance_radius: 1.5}
+  - {latitude: -6.200100, longitude: 106.816700, target_speed: 1.0, acceptance_radius: 1.5}
+  - {latitude: -6.200200, longitude: 106.816750, target_speed: 0.8, acceptance_radius: 1.0}

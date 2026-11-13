@@ -1,0 +1,51 @@
+mission_manager_node:
+  ros__parameters:
+    total_buoy_pairs: 10
+    max_run_seconds: 1200
+mission_cmd_mux_node:
+  ros__parameters:
+    command_timeout_sec: 0.5
+    mission_state_timeout_sec: 2.5
+underwater_imaging_controller:
+  ros__parameters:
+    controller_mode: underwater
+    image_topic: /underwater_camera/image_raw
+    search_timeout_sec: 10.0
+    search_linear_speed: 0.05
+    search_angular_speed: 0.12
+    center_tolerance_ratio: 0.10
+    stabilize_sec: 0.75
+    min_target_area: 700.0
+    consistent_detection_frames: 3
+    output_directory: ~/dagozilla_logs/images/underwater
+surface_imaging_controller:
+  ros__parameters:
+    controller_mode: surface
+    image_topic: /camera/image_raw
+    search_timeout_sec: 20.0
+    search_linear_speed: 0.05
+    search_angular_speed: 0.12
+    center_tolerance_ratio: 0.10
+    target_width_ratio_capture: 0.25
+    stabilize_sec: 0.75
+    min_target_area: 700.0
+    output_directory: ~/dagozilla_logs/images/surface
+docking_controller:
+  ros__parameters:
+    controller_mode: docking
+    image_topic: /camera/image_raw
+    max_mission_forward_speed: 0.8
+    search_linear_speed: 0.0
+    search_angular_speed: 0.12
+    dock_near_speed_ratio: 0.40
+    dock_final_speed_ratio: 0.20
+    dock_near_size_threshold: 0.18
+    dock_contact_size_threshold: 0.38
+    min_target_area: 500.0
+gcs_bridge_node:
+  ros__parameters:
+    bind_host: 0.0.0.0
+    port: 8090
+    telemetry_stale_sec: 2.0
+    gcs_telemetry_rate_hz: 5.0
+    image_root: ~/dagozilla_logs/images

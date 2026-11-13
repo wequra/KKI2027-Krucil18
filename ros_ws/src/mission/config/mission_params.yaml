@@ -1,0 +1,4 @@
+mission_manager_node:
+  ros__parameters:
+    total_buoy_pairs: 10
+    max_run_seconds: 1200

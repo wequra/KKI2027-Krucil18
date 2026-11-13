@@ -1,0 +1,75 @@
+buoy_centering_node:
+  ros__parameters:
+    heading_kp: 1.5
+    # Optional steering PID terms. Defaults retain the validated P-only output:
+    # angular.z = clamp(-heading_kp * horizontal_error, +/- max_yaw_rate).
+    steering_ki: 0.0
+    steering_kd: 0.0
+    steering_integral_limit: 1.0
+    steering_output_limit: -1.0  # <= 0 inherits max_yaw_rate
+    steering_dt_min: 0.001
+    steering_dt_max: 1.0
+    max_linear_speed: 0.8
+    max_yaw_rate: 1.0
+    frame_width: 640.0
+    speed_reduction_factor: 0.6
+    total_gates: 10
+    search_linear_speed: 0.15
+    course_layout: A
+    passing_linear_speed: 0.30
+    pass_radius_threshold: 50.0
+    lost_frames_for_pass: 8
+    # Brief detector dropouts while approaching keep the locked gate active.
+    approaching_lost_frames_tolerance: 6
+    # Association is color-specific: red-to-red and green-to-green continuity.
+    target_association_max_position_ratio: 0.25
+    target_association_max_radius_ratio: 3.0
+    # Ignore a just-passed target for a short callback window before reacquisition.
+    passed_gate_reacquire_block_frames: 3
+    min_pair_confidence: 0.2
+    max_radius_ratio: 3.0
+    # Initial DRY-TEST settings. Clearance/speed/turn must be tuned on the real course.
+    use_object_tracking: true
+    candidate_confirm_frames: 3
+    tracked_target_lost_frames: 6
+    expected_gate_color_order: any
+    score_center_weight: 1.0
+    score_vertical_weight: 1.0
+    # Pixel radius that contributes 1.0 before score_size_weight is applied.
+    score_size_reference_radius: 50.0
+    score_size_weight: 2.0
+    score_confidence_weight: 0.2
+    score_continuity_weight: 0.2
+    score_vertical_mismatch_weight: 4.0
+    pairing_width_weight: 1.0
+    pairing_vertical_weight: 1.0
+    pairing_radius_weight: 1.0
+    # Switch only to a consistently lower, larger, geometrically coherent gate.
+    target_switch_score_margin: 0.5
+    target_switch_confirm_frames: 3
+    target_switch_min_mean_y_advantage_ratio: 0.08
+    target_switch_min_radius_ratio: 1.15
+    target_switch_max_vertical_mismatch_ratio: 0.10
+    partial_gate_recovery_frames: 12
+    recovery_linear_speed: 0.15
+    recovery_yaw_rate: 0.35
+    reassociation_max_position_ratio: 0.12
+    reassociation_max_radius_ratio: 1.8
+    reassociation_max_vertical_mismatch_ratio: 0.10
+    max_detection_age_s: 1.0
+    passed_gate_suppression_time_s: 30.0
+    retired_position_ratio: 0.12
+    retired_radius_ratio: 1.8
+    gate_3_clear_time_s: 3.0
+    gate_7_clear_time_s: 3.0
+    clear_forward_speed: 0.3
+    clear_heading_kp: 0.02  # command/degree, independent of buoy PID
+    turn_angle_deg: 90.0
+    turn_forward_speed: 0.2
+    turn_angular_command: 0.4
+    turn_heading_tolerance_deg: 5.0
+    turn_stable_samples: 5
+    heading_timeout_s: 1.0
+    detection_timeout_s: 1.0
+    turn_timeout_s: 30.0
+    debug_pairing: false

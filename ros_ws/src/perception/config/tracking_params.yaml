@@ -1,0 +1,4 @@
+/**:
+  ros__parameters:
+    use_object_tracking: true
+    tracker_type: bytetrack.yaml
