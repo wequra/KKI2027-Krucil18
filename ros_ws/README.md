@@ -56,7 +56,7 @@ See [docs/FULL_MISSION_AND_GCS.md](docs/FULL_MISSION_AND_GCS.md) for the autonom
 
 ### 1. Build Workspace
 ```bash
-cd dagozilla-asv
+cd ~/dagozilla_ws
 colcon build --symlink-install
 source install/setup.bash
 ```

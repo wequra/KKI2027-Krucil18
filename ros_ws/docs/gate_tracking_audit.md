@@ -231,12 +231,12 @@ diremap ke `/test/buoy_cmd`. Legacy stress menjalankan RC node hanya pada domain
 software ini tanpa MAVROS/FCU; jangan jalankan pada domain hardware.
 
 ```bash
-cd /path/to/Dagozilla
+cd ~/dagozilla_ws
 source /opt/ros/jazzy/setup.bash
 export ROS_DOMAIN_ID=86
 export YOLO_AUTOINSTALL=false
 python3 -c 'import ultralytics; print(ultralytics.__version__); from ultralytics import YOLO; print(callable(YOLO.track))'
-test -s src/ball_detector_pkg/weights/best.pt
+test -s src/perception/weights/best.pt
 colcon build --symlink-install --packages-up-to perception guidance_control mission simulation bringup
 source install/setup.bash
 test -s "$(ros2 pkg prefix --share perception)/weights/best.pt"

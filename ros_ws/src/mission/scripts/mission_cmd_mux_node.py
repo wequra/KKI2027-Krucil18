@@ -44,10 +44,17 @@ class MissionCmdMux(Node):
         self.pub.publish(item[0] if item and time.monotonic() - item[1] <= self.timeout else Twist())
 
 def main(args=None):
-    rclpy.init(args=args); node = MissionCmdMux()
-    try: rclpy.spin(node)
+    rclpy.init(args=args)
+    node = MissionCmdMux()
+    try:
+        rclpy.spin(node)
     finally:
-        if rclpy.ok(): node.pub.publish(Twist())
+        if rclpy.ok():
+            node.pub.publish(Twist())
         node.destroy_node()
-        if rclpy.ok(): rclpy.shutdown()
-if __name__ == '__main__': main()
+        if rclpy.ok():
+            rclpy.shutdown()
+
+
+if __name__ == '__main__':
+    main()

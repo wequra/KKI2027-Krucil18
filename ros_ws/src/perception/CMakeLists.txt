@@ -57,7 +57,7 @@ install(PROGRAMS
   DESTINATION lib/${PROJECT_NAME})
 
 install(FILES
-  ../ball_detector_pkg/weights/best.pt
+  weights/best.pt
   DESTINATION share/${PROJECT_NAME}/weights)
 
 ament_package()

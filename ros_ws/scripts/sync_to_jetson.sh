@@ -6,18 +6,18 @@ set -euo pipefail
 usage() {
   cat <<'EOF'
 Usage:
-  scripts/sync_to_jetson.sh [--apply] [--delete-removed] USER@JETSON:/remote/Dagozilla
+  scripts/sync_to_jetson.sh [--apply] [--delete-removed] USER@JETSON:/remote/dagozilla_ws
 
 Examples:
   # Preview exactly which source files would be sent.
-  scripts/sync_to_jetson.sh rie@jetson:/home/rie/Dagozilla
+  scripts/sync_to_jetson.sh user@jetson:~/dagozilla_ws
 
   # Transfer only changed files; never deletes anything on Jetson.
-  scripts/sync_to_jetson.sh --apply rie@jetson:/home/rie/Dagozilla
+  scripts/sync_to_jetson.sh --apply user@jetson:~/dagozilla_ws
 
   # Also remove remote source files that were deleted locally.
   # Use only after reviewing the preview above.
-  scripts/sync_to_jetson.sh --apply --delete-removed rie@jetson:/home/rie/Dagozilla
+  scripts/sync_to_jetson.sh --apply --delete-removed user@jetson:~/dagozilla_ws
 EOF
 }
 
@@ -55,7 +55,7 @@ while (($#)); do
 done
 
 if [[ -z "$destination" || "$destination" != *:* ]]; then
-  echo "Destination must use USER@JETSON:/remote/Dagozilla format." >&2
+  echo "Destination must use USER@JETSON:/remote/dagozilla_ws format." >&2
   usage >&2
   exit 2
 fi
@@ -106,7 +106,7 @@ if "$apply"; then
   cat <<'EOF'
 
 Source transfer complete. On Jetson, rebuild the affected ROS packages:
-  cd ~/Dagozilla
+  cd ~/dagozilla_ws
   source /opt/ros/jazzy/setup.bash
   colcon build --symlink-install
   source install/setup.bash
